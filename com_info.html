@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <title>{{data[0]}}</title>
+    
+    <style>
+      *{
+		box-sizing:border-box;
+		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+      }
+      #main{
+		background-color:#ededed;
+		padding:50px;
+		text-align:center;
+		width:85%;
+		margin:0 auto;
+		margin-bottom:40px;
+      }
+      #committee_info{
+        width:50%;
+        text-align:left;
+        margin:0 auto;
+      }
+      #members_info{
+        width:100%;
+        background-color:#cccccc;
+        margin:10px;
+        padding:10px;
+      }
+      #members_info td{
+        padding:10px;
+      }
+    </style>
+  </head>
+  
+  <body>
+	  <h2 style="text-align:center;">{{data[0]}}</h2>
+	  
+    <div id="main">
+	  <h3>Committee information</h3>
+	  <div id="committee_info">
+		  <p>Committe Type: {{data[1]}}</p>
+		  <p>Current Chair: {{data[2]}}</p>
+		  <p>Contact info: {{data[3]}}</p>
+	  </div>
+	  
+	  <h3>Committee Members</h3>
+	  <div id="committee_members">
+		  <table id="members_info">
+			  <tr>
+				  <th>Faculty Name</th>
+				  <th>Position Type</th>
+				  <th>Workload Points</th>
+				  <th>Rotation Date</th>
+			  </tr>
+			  
+			  {% for a_member in members %}
+			  <tr>
+				  <td>a_member[0]</td>
+				  <td>a_member[1]</td>
+				  <td>a_member[2]</td>
+				  <td>a_member[3]</td>
+			  <tr>
+			  {% endfor %}
+			  
+		  </table>
+	  </div>
+	  
+	  <h3>Description</h3>
+	  
+	  <div id="description">
+		  <p>{{data[4]}}</p>
+	  </div>
+    </div>
+  </body>
+  
+ </html>

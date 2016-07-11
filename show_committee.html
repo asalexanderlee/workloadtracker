@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <title>{{data[0]}}</title>
+	  
+	  <style>
+		*{
+			box-sizing:border-box;
+			font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;	
+		}
+		  #main{
+			background-color:#ededed;
+			width:95%;
+			margin:0 auto;
+			text-align:center;
+			padding:30px;	  
+		}
+		#committee_info{
+			text-align:left;
+			width:35%;
+			margin:0 auto;
+			background-color:#cccccc;
+			padding:10px;
+			margin-bottom:15px;	
+			border-radius:5px;
+		}
+		#members_info{
+			width:50%;
+			background-color:#cccccc;
+			margin:0 auto;
+			border-collapse:collapse;
+		}
+		#members_info td{
+			padding:15px;
+			border-bottom:1px solid #009999;	
+		}
+		#members_info th{
+			background-color:#bfbfbf;
+			padding:10px;	
+		}
+		.not_home_a{
+			display:inline-block;
+			margin:20px;
+			margin-top:70px;
+			margin-left:100px;
+			margin-right:100px;	
+		}
+		#description{
+			width:70%;
+			margin:0 auto;
+			text-align:justify;	
+		}
+		#home_icon{
+			width:25px;
+			height:20px; 
+			color:white; 
+			position:relative;
+			cursor:pointer;
+		}
+		#home{
+			position:fixed;
+			background-color:#4d4dff;
+			color:white;
+			opacity:0.8;	
+			padding:5px;
+			top:0px;
+			left:0px;
+			border-radius:2px;
+			cursor:pointer;
+		}
+		#home_text{
+			position:relative;
+			bottom:3px;
+			margin-right:5px;
+			cursor:pointer;	
+		}
+	</style>
+  </head>
+  
+  <body>
+	  <div id="home" onclick="document.getElementById('home_link').click();">
+      		<img src="white_home.png" id="home_icon"/>
+	     	<label id="home_text"><a id="home_link" style="color:white;text-decoration:none;" href="http://mcs3.davidson.edu/workloadtracker/home.html">Home</a></label>
+		</div>
+		
+	  <h2 style="text-align:center;">{{data[0]}}</h2>
+	  <div id="main">
+	  <h3>Committee information</h3>
+	  <div id="committee_info">
+		  <p>Committe Type: <span style="color:#008080;">{{data[1]}}</span></p>
+		  <p>Current Chair: <span style="color:#008080;">{{data[2]}}</span></p>
+		  <p>Contact info: <span style="color:#008080;">{{data[3]}}</span></p>
+	  </div>
+	  
+	  <h3 style="margin-top:50px;">Description</h3>
+	  
+	  <div id="description">
+		  <p>{{data[4]}}</p>
+	  </div>
+	  
+	  <h3 style="margin-top:50px;">Committee Members</h3>
+	  <div id="committee_members">
+		  <table id="members_info">
+			  <tr>
+				  <th>Faculty Name</th>
+				  <th>Position kind</th>
+				  <th>Work Load Point</th>
+				  <th>Rotation Date</th>
+			  </tr>
+			  
+			  {% for a_member in members|sort %}
+			  <tr>
+				  <td>{{a_member[0]}}</td>
+				  <td>{{a_member[1]}}</td>
+				  <td>{{a_member[2]}}</td>
+				  <td>{{a_member[3]}}</td>
+			  <tr>
+			  {% endfor %}
+			  
+		  </table>
+	  </div>
+	  
+	  <a class="not_home_a" href="http://mcs3.davidson.edu/workloadtracker/com_home.cgi">Edit Another Committee</a>
+	  <a class="not_home_a" href="http://mcs3.davidson.edu/workloadtracker/display_vacancy-1.cgi">Fill Positions</a>
+	  </div>
+  </body>
+  
+ </html>
