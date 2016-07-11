@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			*{
+				box-sizing:border-box;
+				font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;	
+			}
+			#main{
+				background-color:#ededed;
+				width:80%;
+				height:80%;
+				margin:0 auto;	
+				padding:60px;
+				text-align:center;
+				margin-top:12%;
+			}
+			.act{
+				padding:10px;
+				margin-right:20px;
+				background-color:#adebeb;
+				box-shadow:2px 2px 5px gray;	
+			}
+			.act:hover{
+				background-color:#98e6e6;
+				cursor:pointer;	
+			}
+			#select_com, #select_act{
+				font-size:20px;	
+			}
+			#select_act_div{
+				padding:10px;	
+			}
+			#select_com_div{
+				padding-bottom:30px;
+				border-bottom:2px solid #cccccc;	
+			}
+			#home_icon{
+				width:25px;
+				height:20px; 
+				color:white; 
+				position:relative;
+				cursor:pointer;
+			}
+			#home{
+				position:fixed;
+				background-color:#4d4dff;
+				color:white;
+				opacity:0.8;	
+				padding:5px;
+				top:0px;
+				left:0px;
+				border-radius:2px;
+				cursor:pointer;
+			}
+			#home_text{
+				position:relative;
+				bottom:3px;
+				margin-right:5px;
+				cursor:pointer;	
+			}
+			#hidden_pass_verif{
+				display:none;
+				text-align:center;	
+			}
+			#hidden_pass_verif input[type=password]{
+				padding:10px;
+				border:1px solid #cccccc;
+				border-radius:5px;
+				margin-right:15px;
+			}
+			#hidden_pass_verif input[type=submit]{
+				padding:10px;
+				background-color:#009999;
+				border-radius:5px;
+				box-shadow:1px 1px 4px gray;
+				color:white;
+				border:1px solid gray;
+				cursor:pointer;
+				font-size:14px;	
+				transition:0.5s;
+			}
+			#hidden_pass_verif input[type=submit]:hover{
+				background-color:rgb(5, 158, 158);	
+				box-shadow:none;
+			}
+			#hidden_pass_verif input[type=password]:focus{
+				background-color:#cccccc;
+				outline:2px solid #cce6ff;	
+			}
+			#validat_box{
+				background-color:#ededed;
+				padding:15px;
+				padding-top:5px;
+				position:fixed;
+				left:40%;
+				top:30%;
+				box-shadow:3px 3px 10px gray;
+				border-radius:5px;
+				width:25%;
+				display:none;
+				z-index:2;
+			}
+			#yes{
+				background-color:#cccccc;
+				border:1px solid #bfbfbf;
+				border-radius:3px;
+				cursor:pointer;
+				padding:10px;
+				font-size:15px;
+				display:inline-block;
+				margin:10px;	
+			}
+			#yes:hover{
+				background-color:#99bbff;
+			}
+			#no{
+				background-color:#668cff;
+				border:1px solid #668cff;
+				border-radius:3px;
+				cursor:pointer;
+				padding:10px;
+				font-size:15px;
+				display:inline-block;
+				margin:10px;
+				margin-right:70%;
+			}
+			#no:hover{
+				background-color:#4d79ff;
+			}
+			#blackout{
+				position:fixed;
+				display:none;
+				z-index:1;
+				width:100%;
+				height:100%;
+				margin:0px;
+				top:0px;
+				left:0px;
+				background-color:black;
+				opacity:0.5;	
+			}
+			.close_icon{
+				width:20px;
+				height:20px;
+				position:relative;
+				right:10px;
+				left:48%;
+				top:10px;	
+				cursor:pointer;
+			}
+			#success_msg{
+				text-align:center;
+				width:80%;
+				color:#99ffdd;
+				background-color:#8c8c8c;
+				margin:0 auto;
+				padding:0px;
+				border:2px solid #595959;	
+			}
+			#close_icon{
+				width:20px;
+				height:20px;
+				position:fixed;	
+				cursor:pointer;
+				right:204px;
+				top:585px;
+			}
+		</style>
+		
+		<script>
+			function submitEdit(submitBtnId){
+				var continueFunc = "true";
+				var subBtn = document.getElementById(submitBtnId);
+				var selectMenu = document.getElementById('select_menu');
+				subBtn.value = selectMenu.options[selectMenu.selectedIndex].innerHTML;
+				
+				if (subBtn.value == "Choose one"){
+					window.alert("Please choose a committee.");	
+				}
+				else{
+					if (submitBtnId == "submit_delete"){
+						continueFunc = confirm('Are you sure you want to delete this committee? You cannot retrieve any information from this committee after deleting it.');
+					}
+					if (continueFunc == "true"){
+						subBtn.click();	
+					}
+				}
+			}
+			function closeVerif(){
+				document.getElementById('validat_box').style.display = 'none';
+				document.getElementById('blackout').style.display = 'none'; 
+				document.getElementById('are_you_sure').style.display = 'block';
+				document.getElementById('hidden_pass_verif').style.display = 'none';
+			}
+			function confirmDelete(){
+				var selectMenu = document.getElementById('select_menu');
+				if (selectMenu.options[selectMenu.selectedIndex].innerHTML == "Choose one"){
+					window.alert("Please choose a committee.");   
+				}
+				else{
+					var subBtn = document.getElementById('submit_delete');
+					var selectMenu = document.getElementById('select_menu');
+					subBtn.value = selectMenu.options[selectMenu.selectedIndex].innerHTML;
+					document.getElementById('validat_box').style.display = 'block';
+					document.getElementById('blackout').style.display = 'block';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="home" onclick="document.getElementById('home_link').click();">
+			<img src="white_home.png" id="home_icon"/>
+			<label id="home_text"><a id="home_link" style="color:white;text-decoration:none;" href="http://mcs3.davidson.edu/workloadtracker/home.html">Home</a></label>
+		</div>
+		<div id="main">
+			<div id="select_com_div">
+				<p id="select_com">Select a committee: </p>
+				<select id="select_menu">
+					<option>Choose one</option>
+					{% for i in data %}
+					<option>{{i}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			
+			<div id="select_act_div">
+				<p id="select_act">Select an action:</p><br>
+					<span class="act" onclick="document.getElementById('add_href').click();">Add</span>			
+					<form action="committee_info.cgi" method="post" style="display:inline-block">
+						<a href="http://mcs3.davidson.edu/workloadtracker/edit_com_add.html" style="display:none;" id="add_href"></a>
+						<span class="act" onclick="submitEdit('submit');">Edit</span>
+						<input type="submit" name="submit" id="submit" style="display:none;"/>
+					</form>
+					<form action="remove_com.cgi" method="post" style="display:inline-block">
+						<div id="validat_box">
+							<img src="Grey_close_x.png" class="close_icon" onclick="closeVerif();"/>
+							<div id="are_you_sure">
+								<p style="text-align:center;">These changes are final. Are you sure you wish to continue?</p>
+								<p id="no" onclick="closeVerif();">No</p>
+								<p id="yes" onclick="document.getElementById('hidden_pass_verif').style.display = 'block';document.getElementById('are_you_sure').style.display = 'none';">Yes</p>
+							</div>
+							<div id="hidden_pass_verif">
+								<p>Please enter the password:</p>
+								<input type="password" required="required" name="password" id="input_pass"/>
+								<input type="submit" name="pass_submit" value="Enter" onclick="submitChanges();" id="submit_pass"/>
+							</div>
+						</div>
+						
+						<div id="blackout">
+						</div>
+						
+						<span class="act" onclick="confirmDelete();">Delete</span>
+						<input type="text" id="submit_delete" name="submit_delete" style="display:none;"/>
+					</form>
+			</div> <!--End "select_act_div"-->			
+		</div> <!--End main -->
+		{% if message != "" %}
+			<div id="success_msg"><p style="margin:30px;"><span style="color:#00e699;">Success!</span> {{message}}</p><img src="Grey_close_x.png" id="close_icon" onclick="document.getElementById('success_msg').style.display = 'none';"/></div>
+		{% endif %}
+	</body>
+</html>

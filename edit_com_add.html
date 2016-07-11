@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width">
+				<title>Add a Committee</title>
+				
+				<style>
+					*{
+						box-sizing:border-box;
+						font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;	
+					}
+					#add_com_head{
+						text-align:center;
+						font-size:22px;	
+					}
+					#main{
+						background-color:#ededed;
+						padding:50px;
+						text-align:center;
+						width:85%;
+						margin:0 auto;
+						min-width:900px;
+						margin-bottom:40px;
+					}
+					fieldset{
+						border:2px solid #2db9b9;
+						padding:20px;
+						margin:10px;	
+						width:100%;
+						max-width:100%;
+						max-height:100%;
+						margin-bottom:5%;
+					}
+					legend{
+						color:#2db9b9;
+					}
+					textarea{
+						width:65%;
+						height:150px;	
+						margin:8px;
+						border:1px solid #cccccc;
+						max-width:100%;
+						max-height:100%;
+						font-size:14px;
+						resize:vertical;
+						border-radius:4px;
+						outline:none;
+					}
+					textarea:focus{
+						background-color:#d9d9d9;
+						box-shadow:0 0 4px #66b3ff;	
+					}
+					input[type=text]{
+						padding:7px;
+						border-radius:4px;
+						border:1px solid #cccccc;
+						width:200px;
+						outline:none;	
+					}
+					input[type=text]:focus{
+						box-shadow:0 0 4px #66b3ff;
+						background-color:#d9d9d9;	
+					}
+					table{
+						width:60%;	
+						margin:0 auto;
+					}
+					#position_table{
+						width:100%;
+						background-color:#bfbfbf;	
+						border-collapse:collapse;
+					}
+					#position_table th{
+						background-color:#8c8c8c;
+						color:white;
+						padding:10px;
+						border:2px solid #bfbfbf;
+					}
+					#position_table td{
+						padding:15px;
+						border-bottom:2px solid #8c8c8c;
+					}
+					.editable_opt_div{
+						padding:5px;
+						background-color:#b3b3b3;
+					}
+					.editable_opt_div:hover, .editable_opt_div:focus{
+						
+					}
+					.question_mark{
+						width:20px;
+						height:20px;
+						margin-left:5px;
+						cursor:pointer;	
+					}
+					.help_div{
+						background-color:#404040;
+						color:white;
+						padding:5px;
+						position:absolute;
+						display:none;
+						font-weight:normal;
+						width:200px;
+						margin-top:8px;	
+						opacity:0.9;
+						box-shadow:2px 2px 8px gray;
+						font-size:14px;
+					}
+					#add_pos{
+						background-color:#cce6ff;
+						box-shadow:2px 2px 8px gray;
+						padding:10px;
+						width:10%;	
+						margin:0px;
+						margin-left:2%;
+						cursor:pointer;
+						font-size:14px;
+						display:inline-block;
+						margin-right:75%;
+					}
+					#add_pos:hover{
+						background-color:#b3daff;	
+					}
+					#sub_changes{
+						background-color:#009999;
+						padding:10px;
+						font-size:14px;
+						box-shadow:2px 2px 8px gray;
+						width:10%;
+						color:white;
+						cursor:pointer;
+						display:inline-block;
+					}
+					#sub_changes:hover{
+						background-color:#008080;
+					}
+					.error_msg{
+						position:absolute;
+						background-color:white;
+						opacity:0.8;
+						color:#ff4d4d;
+						padding:10px;
+						width:200px;
+						display:none;
+					}
+					#home_icon{
+						width:25px;
+						height:20px; 
+						color:white; 
+						position:relative;
+						cursor:pointer;
+					}
+					#home{
+						position:fixed;
+						background-color:#4d4dff;
+						color:white;
+						opacity:0.8;	
+						padding:5px;
+						top:0px;
+						left:0px;
+						border-top-right-radius:5px;
+						border-bottom-right-radius:5px;
+						cursor:pointer;
+					}
+					#home_text{
+						position:relative;
+						bottom:3px;
+						margin-right:5px;
+						cursor:pointer;	
+					}
+					#hidden_pass_verif{
+						display:none;
+						text-align:center;	
+					}
+					#hidden_pass_verif input[type=password]{
+						padding:10px;
+						border:1px solid #cccccc;
+						border-radius:5px;
+						margin-right:15px;
+					}
+					#hidden_pass_verif input[type=button]{
+						padding:10px;
+						background-color:#009999;
+						border-radius:5px;
+						box-shadow:1px 1px 4px gray;
+						color:white;
+						border:1px solid gray;
+						cursor:pointer;
+						font-size:14px;	
+						transition:0.5s;
+					}
+					#hidden_pass_verif input[type=button]:hover{
+						background-color:rgb(5, 158, 158);	
+						box-shadow:none;
+					}
+					#hidden_pass_verif input[type=password]:focus{
+						background-color:#cccccc;
+						outline:2px solid #cce6ff;	
+					}
+					#validat_box{
+						background-color:#ededed;
+						padding:15px;
+						padding-top:5px;
+						position:fixed;
+						left:40%;
+						top:30%;
+						box-shadow:3px 3px 10px gray;
+						border-radius:5px;
+						width:25%;
+						display:none;
+						z-index:2;
+					}
+					#yes{
+						background-color:#cccccc;
+						border:1px solid #bfbfbf;
+						border-radius:3px;
+						cursor:pointer;
+						padding:10px;
+						font-size:15px;
+						display:inline-block;
+						margin:10px;	
+					}
+					#yes:hover{
+						background-color:#99bbff;
+					}
+					#no{
+						background-color:#668cff;
+						border:1px solid #668cff;
+						border-radius:3px;
+						cursor:pointer;
+						padding:10px;
+						font-size:15px;
+						display:inline-block;
+						margin:10px;
+						margin-right:70%;
+					}
+					#no:hover{
+						background-color:#4d79ff;
+					}
+					#blackout{
+						position:fixed;
+						display:none;
+						z-index:1;
+						width:100%;
+						height:100%;
+						margin:0px;
+						top:0px;
+						left:0px;
+						background-color:black;
+						opacity:0.5;	
+					}
+					.close_icon{
+						width:20px;
+						height:20px;
+						position:relative;
+						right:10px;
+						left:95%;
+						top:10px;	
+						cursor:pointer;
+					}
+					.autocorrect{
+						background-color:#008080;
+						color:white;
+						opacity:0.9;
+						padding:5px;
+						position:absolute;	
+						cursor:pointer;
+						width:220px;
+						display:none;
+					}
+					.auto_opt{
+						padding:4px;
+						margin:0px;	
+					}
+					.auto_opt:hover{
+						background-color:#006666;	
+					}
+					#select_another{
+						position:fixed;
+						top:40px;
+						left:0px;
+						background-color:#ccccff;
+						opacity:0.8;
+						padding:5px;
+						padding-top:3px;
+						padding-bottom:3px;
+						border-top-right-radius:5px;
+						border-bottom-right-radius:5px;
+						cursor:pointer;
+						width:90px;
+						font-size:14px;
+					}
+					
+				</style>
+				
+				<script>
+					var TYPES = ["SPECIAL", "AL", "PRES", "HUM", "NSM", "SS"];
+					
+					function filterProfs(input, autocorID){
+						var curInput = input.innerHTML.toUpperCase();
+						var inputLen = curInput.length;
+						
+						if (curInput != "<BR>"){
+							for (var i = 0; i < TYPES.length; i++){
+								var curElemText = TYPES[i];
+								var curElemID = TYPES[i] + "" + autocorID;
+								var curSubStr = curElemText.substring(0,inputLen).toUpperCase();
+								
+								if (curSubStr !== curInput){
+									document.getElementById(curElemID).style.display = "none";	
+								}	
+								else{
+									document.getElementById(curElemID).style.display = "block";	
+								}
+							}
+						}
+						else{
+							for (var j = 0; j < TYPES.length; j++){	
+								document.getElementById(TYPES[j] + "" + autocorID).style.display = 'block';
+							}
+						}
+					}
+					function hasClass(target, classname) {
+						var lst = target.classList;   
+						var lstWords = classname.split(" ");
+						var hasWord = true;
+						for (var i = 0; i < lstWords.length; i++){
+							hasWord = hasWord && lst.contains(lstWords[i]);   
+						}
+						return hasWord;
+					}
+					var numAutocor = 0;
+					function createAutocor(div){
+						var autocor = document.createElement("DIV");	
+						autocor.className = "autocorrect";
+						autocor.id = "" + numAutocor;
+						
+						for (var i = 0; i < TYPES.length; i++)(function(i){
+							var opt = document.createElement("P");
+							opt.className = "auto_opt";
+							opt.id = TYPES[i] + numAutocor + "";
+							opt.appendChild(document.createTextNode(TYPES[i]));
+							opt.onclick = function(){
+								div.innerHTML = opt.innerHTML;	
+								div.parentElement.style.color = "#239090";
+								div.parentElement.className = "verif_td";
+							}
+							autocor.appendChild(opt);	
+						})(i);
+						numAutocor++;
+						
+						return autocor;
+					}
+					function addPosition(){
+						var table = document.getElementById('position_table');				
+						var tr = document.createElement("TR");
+						tr.id="-1";
+						tr.className = "position_tr";
+						
+						for (var i = 0; i < 4; i++)(function(i){
+							var td = document.createElement("TD");
+							td.className = "verif_td";
+							
+							if ((i == 2) || (i == 3)){
+								td.style.color = "#239090";
+								var div = document.createElement("DIV");
+								div.contentEditable = "true";
+								div.className = "editable_opt_div";
+								div.style.height = "30px";
+								if (i == 2){ 
+									td.style.width = "250px";
+									var autocor = createAutocor(div);
+									div.oninput = function(){
+										filterProfs(div, autocor.id);
+									}  
+									div.onclick = function(){
+										autocor.style.display = 'block';   
+									}
+									div.onblur = function(){
+										if ((TYPES.indexOf((div.innerHTML).toUpperCase()) == -1) && (div.innerHTML != "")){
+											td.style.color = 'red';
+											setTimeout(function(){autocor.style.display = 'none';}, 200);									
+											td.className += ' has_error';
+											
+										}else{
+											td.style.color = "#239090"; 
+											setTimeout(function(){autocor.style.display = 'none';}, 200);
+											td.className = "verif_td";	
+										}
+									}
+								}
+								if (i == 3){
+									div.onblur = function(){
+										instantPointVerif(div);	
+									}	
+								}
+								td.appendChild(div);
+								if (i == 2){
+									td.appendChild(autocor);	
+								}
+							}
+							tr.appendChild(td);	
+						})(i);
+						table.appendChild(tr);	
+					}
+					
+					function hasErrors(){
+						var tds = document.getElementsByClassName("has_error");
+						
+						if (tds.length > 0){
+							return true;
+						}
+						return false;   
+					}
+					function hasPointErrors(){
+						var tds = document.getElementsByClassName("has_point_error");
+						if (tds.length > 0){
+							return true;
+						}
+						return false;  	
+					}
+					function submitChanges(){
+						var finalStr = "";
+						var positions = document.getElementsByClassName('position_tr');
+						for (var i = 0; i < positions.length; i++)(function(i){
+							var curElem = positions[i];
+							var tds = curElem.children;
+							finalStr += tds[2].firstChild.innerHTML + ",";
+							tds[2].style.color = "#239090";
+							finalStr += tds[3].firstChild.innerHTML + "%";
+						})(i);
+						document.getElementById("position_query").value = finalStr;
+						var description_str = document.getElementById("descript").value;
+						document.getElementById("description_id").value = description_str;
+						document.getElementById("submit_pass").click();
+					}
+					
+					function verify(){
+						if (hasErrors() && hasPointErrors()){
+							window.alert("Please enter a valid position type and a valid number of points.");
+						}
+						else if (hasErrors()){
+							window.alert("Please enter a valid position type.");
+						}
+						else if (hasPointErrors()){
+							window.alert("Please enter a valid number of points.");	
+						}
+						else{
+							document.getElementById('validat_box').style.display = 'block';
+							document.getElementById('blackout').style.display = 'inline'; 
+						} 
+					}
+					
+					function instantPointVerif(div){
+						if (isNaN(parseInt(div.innerHTML))){
+							div.className += " has_point_error";
+							div.parentElement.style.color = "red";	
+						}
+						else{
+							div.parentElement.style.color = "#239090";
+							div.className = "editable_opt_div";
+						}
+					}
+					
+					function closeVerif(){
+						document.getElementById('validat_box').style.display = 'none';
+						document.getElementById('blackout').style.display = 'none'; 
+						document.getElementById('are_you_sure').style.display = 'block';
+						document.getElementById('hidden_pass_verif').style.display = 'none';
+					}
+				</script>
+				
+				</head>
+				<body>
+					<div id="home" onclick="document.getElementById('home_link').click();">
+						<img src="white_home.png" id="home_icon"/>
+						<label id="home_text"><a id="home_link" style="color:white;text-decoration:none;" href="http://mcs3.davidson.edu/workloadtracker/home.html">Home</a></label>
+					</div>
+					<div id="select_another" onclick="document.getElementById('select_com_href').click();">
+						<p onclick="document.getElementById('select_com_href').click();">Select a Different Committee</p>
+						<a href="http://mcs3.davidson.edu/workloadtracker/com_home.cgi" id="select_com_href" style="display:none"></a>
+					</div>
+					<form action="add_committee.cgi" method="post">
+						<div id="validat_box">
+							<img src="Grey_close_x.png" class="close_icon" onclick="closeVerif();"/>
+							<div id="are_you_sure">
+								<p style="text-align:center;">These changes are final. Are you sure you wish to continue?</p>
+								<p id="no" onclick="closeVerif();">No</p>
+								<p id="yes" onclick="document.getElementById('hidden_pass_verif').style.display = 'block';document.getElementById('are_you_sure').style.display = 'none';">Yes</p>
+							</div>
+							<div id="hidden_pass_verif">
+								<p>Please enter the password:</p>
+								<input type="password" required="required" name="password" id="input_pass"/>
+								<input type="button" onclick="submitChanges();" value="Enter"/>
+								<input type="submit" id="submit_pass" name="submit" style="display:none;"/>
+							</div>
+						</div>
+						
+						<div id="blackout">
+						</div>
+						
+						<p id="add_com_head">Add a Committee</p>
+						<div id="main">
+							<fieldset>
+								<legend>Basic Information</legend>
+								<table>
+									<tr>
+										<td><label>Name: </label></td>
+										<td style="text-align:left;"><input type="text" name="name" onblur="if (this.value == ''){this.style.boxShadow = '0px 0px 4px #ff3333';}else{this.style.boxShadow = 'none';}" autofocus required/></td>
+										<td><label>Chair: </label></td>
+										<td style="text-align:left;"><input type="text" name="chair"/></td>
+									</tr>
+									<tr>
+										<td><label>Type: </label></td>
+										<td style="text-align:left;"><input type="text" name="type"/></td>
+										<td><label>Contact Info: </label></td>
+										<td style="text-align:left;"><input type="text" name="contact_info"/></td>
+									</tr>
+								</table><br><br>
+										<label>Description: </label><br><textarea id="descript"></textarea>
+											<input type="text" id="description_id" name="description" style="display:none;"/>
+											</fieldset>
+											
+											<fieldset>
+												<legend>Committee Structure</legend>
+												<p>Positions: </p>
+												<table id="position_table">
+													<tr>
+														<th>Holder 
+															<img src="help_icon.png" class="question_mark" onmouseover="document.getElementById('help_holder').style.display = 'block';" onmouseout="document.getElementById('help_holder').style.display = 'none';"/>
+															<div class="help_div" id="help_holder">To assign a faculty member to a position, please visit the find and fill vacancies page. The only editable information in this table is in green.</div>
+														</th>
+														<th>Rotation Year
+															<img src="help_icon.png" class="question_mark" onmouseover="document.getElementById('help_rotation').style.display = 'block';" onmouseout="document.getElementById('help_rotation').style.display = 'none';"/>
+															<div class="help_div" id="help_rotation">To assign a member a particular rotation year, please visit the find and fill vacancies page. The only editable information in this table is in green.</div>
+														</th>
+														<th style="color:#98e6e6;">Type</th>
+														<th style="color:#98e6e6;">Points</th>
+													</tr>
+												</table>
+											</fieldset>
+											
+											<p id="add_pos" onclick="addPosition();">Add a position</p>
+											<p id="sub_changes" onclick="verify()">Submit Changes</p>
+											<input type="text" name="positions" value ="" id="position_query" hidden/>
+											</form>
+											</div>
+											</body>
+											</html>

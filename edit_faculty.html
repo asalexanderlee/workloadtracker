@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Edit Faculty</title>
+    
+    <style>
+	    * {
+  			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  			box-sizing: border-box;
+		}
+	    #header{
+		 	text-align:center;   
+		}
+		.info{
+			background-color:#ededed;
+			text-align:center;
+			padding:30px;
+			width:70%;	
+			margin: 0 auto;
+		}
+		#instruct_text{
+			color:#990000;	
+			padding:10px;
+			cursor:pointer;
+			width:150px;
+			margin:0 auto;
+			margin-top:20px;
+		}
+		#instruct_text:hover{
+			background-color:#d9d9d9;	
+		}
+		#instructions{
+			background-color:#d9d9d9;
+			text-align:left;
+			padding:20px;
+			width:70%;
+			margin:0 auto;	
+			margin-top:20px;
+			margin-bottom:30px;
+		}
+		input[type=password]{
+			padding:5px;
+			border-radius:5px;
+			border:1px solid #cccccc;	
+		}
+		input[type=password]:focus{
+			background-color:#e6f7ff;	
+		}
+		#upload{
+			background-color:#009999;
+			color:white;
+			padding:5px;
+			margin:10px;
+			font-size:14px;
+			border:1px solid gray;
+			border-radius:2px;	
+		}
+		#upload:hover{
+			background-color:#008080;
+			cursor:pointer;	
+		}
+		#home_icon{
+			  width:25px;
+			  height:20px; 
+			  color:white; 
+			  position:relative;
+			  cursor:pointer;
+			}
+		#home{
+			position:fixed;
+			background-color:#4d4dff;
+			color:white;
+			opacity:0.8;	
+			padding:5px;
+			top:0px;
+			left:0px;
+			border-radius:2px;
+			cursor:pointer;
+		}
+		#home_text{
+			position:relative;
+			bottom:3px;
+			margin-right:5px;
+			cursor:pointer;	
+		}
+	</style>
+	
+	<script>
+		function closeInstruct(){
+			var instruct = document.getElementById('instructions');
+			if (instruct.style.display == 'none'){
+				instruct.style.display = 'block';
+			}
+			else{
+				instruct.style.display = 'none';
+			}
+		}
+	</script>
+  </head>
+  <body>
+	 <div id="home" onclick="document.getElementById('home_link').click();">
+      	<img src="white_home.png" id="home_icon"/>
+	     <label id="home_text"><a id="home_link" style="color:white;text-decoration:none;" href="http://mcs3.davidson.edu/workloadtracker/home.html">Home</a></label>
+	 </div>
+
+  <h1 id="header">Edit Faculty csv file</h1>
+  <div class="info">
+    <p>To view the current faculty data, download the 'FacultyInformation.csv' file by clicking on the link.</p>
+    Download: <a href="FacultyInformation.csv">Current Faculty Information File</a><br>
+	    <p id="instruct_text" onclick="closeInstruct();">Instructions</p>
+    <div id="instructions" style="display:none;"><p>
+	    1. If you are from the VPAA office, perform a Banner query for the following information for the faculty body: ACAD_YEAR, NAME_ALPHS, DIV, RANK, NETWORK_USERNAME. <br><br>
+		2. Open the results in Excel. <br><br>
+		3. Add a column titled 'RETIREMENT/LEAVE/SABBATICAL' and enter the data for the appropriate faculty members. This information is <font color="red">PUBLIC</font>, meaning when <b>any</b> faculty member searches for information about this person, the data entered in the 'RETIREMENT/LEAVE/SABBATICAL' column will be <font color="red">visible</font>.<br><br>
+		4. Once the retirement/leave/sabbatical information has been added, save the Banner query Excel file as a <font color="red">csv file</font> (comma-separated values) that is titled <font color="red">FacultyInformation.csv</font>.</p></div>
+    <p>Upload the updated 'FacultyInformation.csv' below.</p>    
+    
+   <form enctype="multipart/form-data" action="update_faculty.cgi" method="POST">
+      <p style="display:inline-block;">Upload changed file: <input name="file" type="file"></p>
+      <p style="display:inline-block;">Password: <input required="required" name="password" type="password"></p>
+    <label><input value="Upload" id="upload" name="submit" type="submit"></label>      
+    </form>
+    
+    </div>
+    
+  </body>
+</html>

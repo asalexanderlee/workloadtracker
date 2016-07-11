@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<style>
+		*{
+			box-sizing:border-box;
+			font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;	
+		}
+		#main{
+			background-color:#ededed;
+			width:50%;
+			padding:30px;
+			margin:0 auto;	
+		}
+		#home_icon{
+			  width:25px;
+			  height:20px; 
+			  color:white; 
+			  position:relative;
+			  cursor:pointer;
+			}
+		#home{
+			position:fixed;
+			background-color:#4d4dff;
+			color:white;
+			opacity:0.8;	
+			padding:5px;
+			top:0px;
+			left:0px;
+			border-radius:2px;
+			cursor:pointer;
+		}
+		#home_text{
+			position:relative;
+			bottom:3px;
+			margin-right:5px;
+			cursor:pointer;	
+		}
+	</style>
+</head>
+
+<body>
+	<div id="home" onclick="document.getElementById('home_link').click();">
+      		<img src="white_home.png" id="home_icon"/>
+	     	<label id="home_text"><a id="home_link" style="color:white;text-decoration:none;" href="http://mcs3.davidson.edu/workloadtracker/home.html">Home</a></label>
+	</div>
+	<h2 style="text-align:center;"> Change Summary</h2>
+	<div id="main">
+	<ol>
+	{% for i in data %}
+	<li>{{i}}</li><br>
+	<ul>
+		{% for j in data[i]%}
+		{% if j|length == 4 %}
+			<li style="color:blue;">Update Successful!</li>
+			<li>Rotation Date: you changed <b style="color:#005580;">{{j[0]}}</b> to <b style="color:#005580;">{{j[1]}}</b></li>
+			<li>Faculty Member: you changed <b style="color:#005580;">{{j[2]}}</b> to <b style="color:#005580;">{{j[3]}}</b></li><br>
+		{% else %}
+			<li style="color:red;">Update Failed.</li>
+			<li><b style="color:#005580;">{{j[0]}}</b> is not in our database.</li>
+		{% endif %}
+		{% endfor %}
+		<br>
+	</ul>
+	{% endfor %}
+	</ol>
+	
+	<a href="http://mcs3.davidson.edu/workloadtracker/display_vacancy-1.cgi">Continue to find and fill position vacancies</a>
+	</div>
+</body>
+
+
+</html>
