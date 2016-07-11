@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Workload Tracker Home</title>
+    
+    <style>
+	    
+	    #instructions{
+		    background-color:#cccccc;
+		    width:75%;
+		    margin:0 auto;
+		    font-size:14px;
+		    padding:20px;
+		    border:1px solid gray; 
+		}
+		body{
+			min-width:1200px;	
+		}
+		
+		*{
+			font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+			box-sizing:border-box;
+		}
+		#search{
+			background-color:#cce6ff;
+			border-radius:5px;
+			padding:20px;
+			width:90%;
+			height:130%;
+			margin:0px;
+			text-align:center;
+			transition:0.5s;
+			border:2px solid #b3b3b3;
+			cursor:pointer;
+			display:inline-block;
+		}
+		#search:hover{
+			box-shadow:2px 2px 7px gray;	
+		}
+		#search a{
+			text-decoration:none;
+			color:black;	
+		}
+		#com_info{
+			background-color:#cce6ff;
+			border-radius:5px;
+			height:130%;
+			padding:20px;
+			width:90%;
+			text-align:center;
+			transition:0.5s;
+			border:2px solid #b3b3b3;
+			display:inline-block;
+			cursor:pointer;	
+		}
+		#com_info:hover{
+			box-shadow:2px 2px 7px gray;	
+		}
+		#com_info a{
+			text-decoration:none;
+			color:black;	
+		}
+		#all_table{
+			width:77% + 100px;
+			margin-left:12% - 100px;
+			margin-top:5%;
+			border-collapse:separate;
+			border-spacing:50px 0px;	
+		}
+		#all_table td{
+			padding:0px;
+			margin:0px;	
+			width:50%;
+		}
+		#edit_fac{
+			background-color:rgb(237, 255, 260);
+			border-radius:5px;
+			padding:20px;
+			width:90%;
+			text-align:center;
+			transition:0.5s;
+			border:2px solid #b3b3b3;
+			display:inline-block;	
+			margin-right:0px;
+			cursor:pointer;
+			text-overflow:clip;
+			height:100%;
+		}
+		#edit_fac:hover{
+			box-shadow:3px 3px 10px black;
+			background-color:rgb(237, 250, 250);	
+		}
+		#edit_fac a{
+			text-decoration:none;
+			color:black;	
+		}
+		
+		#update_com{
+			background-color:rgb(237, 255, 260);
+			border-radius:5px;
+			padding:20px;
+			width:90%;
+			text-align:center;
+			height:100%;
+			transition:0.5s;
+			border:2px solid #b3b3b3;
+			display:inline-block;
+			cursor:pointer;	
+		}
+		#update_com:hover{
+			box-shadow:3px 3px 10px black;
+			background-color:rgb(237, 250, 250);	
+		}
+		#update_com a{
+			text-decoration:none;
+			color:black;	
+		}
+		#find_fill_vacancy{
+			background-color:rgb(237, 255, 260);
+			border-radius:5px;
+			padding:20px;
+			width:90%;
+			text-align:center;
+			height:100%;
+			transition:0.5s;
+			border:2px solid #b3b3b3;
+			display:inline-block;
+			cursor:pointer;	
+		}
+		#find_fill_vacancy:hover{
+			box-shadow:3px 3px 10px black;
+			background-color:rgb(237, 250, 250);	
+		}
+		#find_fill_vacancy a{
+			text-decoration:none;
+			color:black;	
+		}
+		#instruct_man{
+			text-decoration:none;
+			color:black;
+			margin-left:45%;
+			padding:5px;
+			color:#005580;	
+		}
+		#instruct_man:hover{
+			background-color:#cccccc;	
+		}
+		.text_hidden{	
+			color:gray;
+			font-size:14px;
+		}
+		#logo_div{
+			position:absolute; 
+			bottom:30px;
+			right:30px;
+			width:150px;
+			height:180px;
+			background-color:#cccccc;
+			box-shadow: inset 2px 2px 6px gray;
+			text-align:center;
+			cursor:pointer;
+		}
+		#logo_text{
+			text-decoration:none;
+			color:black;
+			padding:5px;
+			cursor:pointer;	
+		}
+		#logo_text:hover{
+			background-color:#bfbfbf;	
+		}
+		#main{
+			width:70%;	
+			background-color:#ededed;
+			margin:0 auto;
+			padding:40px;
+			padding-bottom:100px;
+			padding-top:50px;
+		}
+		#admin_tools{
+			background-color:#404040;
+			color:white;
+			padding:10px;
+			position:fixed;
+			bottom:0%;
+			left:43%;
+			margin:0px;
+			opacity:0.8;
+			width:160px;
+			cursor:pointer;	
+			transition:0.5s;
+			border-top-right-radius:10px;
+			border-top-left-radius:10px;
+		}
+		#admin_tools_div{
+			background-color:#595959;	
+			color:white;
+			padding:0px;
+			position:fixed;
+			bottom:0%;
+			width:100%;
+			height:0%;
+			margin:0%;
+			opacity:0.8;
+			transition:0.5s;
+		}
+		#admin_table{
+			width:80%;
+			height:100%;	
+			margin-left:5%;
+			display:inline-block;
+		}
+		#admin_table td{
+			width:20%;	
+		}
+		#table-logo{
+			display:inline-block;
+			position:relative; 
+			width:150px;
+			height:180px;
+			background-color:#cccccc;
+			box-shadow: inset 2px 2px 6px gray;
+			text-align:center;
+			cursor:pointer;	
+			margin:0px;
+			bottom:20%;
+			left:1%;
+			transition:0.5s;
+		}
+	</style>
+	
+	<script>
+		function navPeek(){
+			document.getElementById('admin_tools_div').style.height = '2%';
+			document.getElementById('admin_tools').style.bottom = '2%';
+			document.getElementById('table-logo').style.opacity = 0.0;
+		}
+		function navPeekHide(){
+			document.getElementById('admin_tools_div').style.height = '0%';
+			document.getElementById('admin_tools').style.bottom = '0%';
+			document.getElementById('table-logo').style.opacity = 1.0;
+		}
+		function showOrHide(){
+			if (document.getElementById('admin_tools').style.bottom == "30%"){
+				navHide();	
+			}	
+			else{
+				navShow();	
+			}
+		}
+		function navShow(){
+			document.getElementById('logo_div').style.display = 'none';
+			document.getElementById('admin_tools_div').style.height = '30%';
+			document.getElementById('admin_tools').style.bottom = '30%';
+			document.getElementById('table-logo').style.opacity = 1.0;
+			document.getElementById('admin_tools').onmouseout = function(){
+				return;	
+			}
+			document.getElementById('admin_tools').onmouseover = function(){
+				return;	
+			}	
+		}
+		function navHide(){
+			document.getElementById('logo_div').style.display = 'block';
+			document.getElementById('admin_tools_div').style.height = '0%';
+			document.getElementById('admin_tools').style.bottom = '0%';
+			document.getElementById('table-logo').style.opacity = 0.0;
+			document.getElementById('admin_tools').onmouseout = function(){
+				navPeekHide();	
+			}
+			document.getElementById('admin_tools').onmouseover = function(){
+				navPeek();	
+			}
+		}
+	</script>
+	
+  </head>
+  <body>
+    <h1 style="text-align:center;margin-bottom:40px;">Workload Tracker Homepage</h1>
+    
+    <div id="main">
+    <p id="instructions">The Workload Tracker was originally an Excel spreadsheet, created with
+      the intent of helping the Professional Affairs Committee (PAC) keep track
+      of the amount of work each faculty member was doing as part of being on a
+      committee, in order to try to distribute the responsibilities fairly.
+      While the Excel sheet did an excellent job of keeping track of the
+      information, it was difficult for a user to manipulate. Project PRONTO
+      (PRoductive ONline TOols) approached this task with the intent of
+      simplifying the election and record- keeping process, from gathering
+      rotating-off positions to updating the list of committee members with the
+      results from the elections. <br />
+      </p>
+      
+      <table id="all_table">
+	      <tr>
+		      <td>
+      			<div id="search" onclick="document.getElementById('search_text').click();"><a href="http://mcs3.davidson.edu/workloadtracker/search_professor.cgi" id="search_text">Search for faculty by name/workload <br><br><span class="text_hidden">Click here to search for faculty members with a certain number of workload points, rank, number of committees, or type.</span></a></div></td>
+      
+      			<td>
+	      			<div id="com_info" onclick="document.getElementById('com_info_text').click();"><a href="http://mcs3.davidson.edu/workloadtracker/display_com_info.cgi" id="com_info_text">Committee Information<br><br><span class="text_hidden" id="com_info_hidden">Visit this page in order to learn more about the function and composition of each committee.</span></a><br><br></div></td>
+		  </tr>
+	  </table>
+      
+      <div id="logo_div" onclick="document.getElementById('logo_text').click();"><h1><img style="width: 108px; height: 95px;margin-top:0px;" alt="Project PRONTO logo" src="prontologo.png" href="mcs3.davidson.edu/newindex.html"></h1>
+    <a id="logo_text" href="http://mcs3.davidson.edu/newindex.html">PRONTO Home</a></div>
+      </div> <!--End main-->
+    
+    
+    
+    <p id="admin_tools" onmouseover="navPeek();" onmouseout="navPeekHide();" onclick="showOrHide();">Administrator Tools</p>
+    <div id="admin_tools_div">
+	    <table id="admin_table">
+		    <tr>
+			    <td>
+	    			<p id="edit_fac" onclick="document.getElementById('edit_fac_text').click();"><a href="http://mcs3.davidson.edu/workloadtracker/edit_faculty.html" id="edit_fac_text">Edit Faculty Information<br><br></a><span class="text_hidden" id="edit_fac_hidden">Click if you wish to add a CSV from banner updating faculty information. If you wish to replace a current faculty member on a committee, please visit "Find and Fill Upcoming Vacancies".<br><span style="color:red;">Administrators Only</span></span></p></td>
+	    		<td>	
+	    			<p id="update_com" onclick="document.getElementById('update_com_text').click();"><a href="http://mcs3.davidson.edu/workloadtracker/com_home.cgi" id="update_com_text">Change Committee Structure <br><br><span class="text_hidden" id="update_com_hidden">Click if you wish to add a new committee, remove a committee, or change the structure or description of a committee. Committee membership may be handled in "Find and Fill Upcoming Vacancies" and current committee information may be found under "Committee Information."<br><span style="color:red;">Administrators Only</span></span></a></p></td>
+	    		<td>
+		    		<p id="find_fill_vacancy" onclick="document.getElementById('find_fill_vacancy_text').click();"><a href="http://mcs3.davidson.edu/workloadtracker/display_vacancy-1.cgi" id="find_fill_vacancy_text">Find and Fill Upcoming Vacancies<br><br><span class="text_hidden" id="find_fill_vacancy_hidden">After election time, visit this page in order to enter election results. This page is also very useful merely to search which members are rotating out of what positions.<br><span style="color:red;">Administrators Only</span></span></a></p></td>
+	    	</tr>
+	    </table>
+	    <div id="table-logo" onclick="document.getElementById('logo_text').click();"><h1><img style="width: 108px; height: 95px;margin-top:0px;" alt="Project PRONTO logo" src="prontologo.png" href="mcs3.davidson.edu/newindex.html"></h1>
+    <a id="logo_text" href="http://mcs3.davidson.edu/newindex.html">PRONTO Home</a></div>
+	</div>
+  </body>
+</html>

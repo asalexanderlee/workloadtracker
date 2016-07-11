@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Faculty Search</title>
+    <link rel="stylesheet" href="faculty_search.css"/>
+    <script src="faculty_search.js"></script>
+  </head>
+	
+	<!--~~~~~~~~~~~~~~~~~ Header ~~~~~~~~~~~~~~~~~~~~-->
+	
+    <body style="font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;">
+        <h2 style="text-align:center;">Faculty Search</h2>
+        
+        <!--~~~~~~~~~~~~~~~~~ Home ~~~~~~~~~~~~~~~~~~~~-->
+        
+        <div id="home" onclick="document.getElementById('home_link').click();">
+      		<img src="white_home.png" id="home_icon"/>
+	     	<label id="home_text"><a id="home_link" style="color:white;text-decoration:none;" href="http://mcs3.davidson.edu/workloadtracker/home.html">Home</a></label>
+	    </div>
+
+		<!--~~~~~~~~~~~~~~~~~ Retrieve info about faculty... div ~~~~~~~~~~~~~~~~~~~~-->
+        <div id="main">
+        <form method="POST" action="search_professor.cgi" style="width:35%;margin:0 auto;">
+            <h3>Retrieve information about faulty member: </h3>
+        
+            <input id="FacultyFullName" name="FacultyFullName" placeholder="Search By Name">
+	        <input id="hidden_ind_fac_input" name="hidden_fac" type="text" value="" hidden> <!-- Holds input value to pass to the cgi-->
+            <input name="subchange" value="Retrieve" id="retrieve_fac_info_btn" onclick="returnIndFacStr();" type="submit">
+        </form> 
+        </div><br> <!-- End main -->
+        
+        
+        
+        
+        <!--~~~~~~~~~~~~~~~~~ Gray div that contains search results and parameters ~~~~~~~~~~~~~~~~~~~~-->
+        
+        <div id="window_2">    
+        <form method="POST" action="search_professor.cgi" style="display:inline-block;width:40%;text-align:right;">
+        <h3 style="text-align:left;margin-left:5%;">Select from the search parameters below.</h3>
+        
+        
+        	<!--~~~~~~~~~~~~~~~~~ RANK ~~~~~~~~~~~~~~~~~~~~-->
+        <fieldset>
+        <legend>RANK</legend>
+          <div class="choice"><input name="rank" value="ASTPRO" class="rank checkbox" id="ASTPRO" onclick="toggleCheckbox('ASTPRO_label');" type="checkbox"><label id="ASTPRO_label" for="ASTPRO">Assistant Professor</label></div>
+          <div class="choice"><input name="rank" value="ASCPRO" class="rank checkbox" id="ASCPRO" onclick="toggleCheckbox('ASCPRO_label');"type="checkbox"><label id="ASCPRO_label" for="ASCPRO">Associate Professor</label></div>
+          <div class="choice"><input name="rank" value="PROF" class="rank checkbox" id="PROF" onclick="toggleCheckbox('PROF_label');"type="checkbox"><label id="PROF_label" for="PROF">Professor</label></div>
+          <div class="choice"><input name="rank" value="OTHER" class="rank checkbox" id="OTHER" onclick="toggleCheckbox('OTHER_label');"type="checkbox"><label id="OTHER_label" for="OTHER">Other</label></div>
+	    </fieldset>
+	    <input type="text" value="" name="rank_submit" id="rank_submit" hidden/>
+		   
+		   
+		   <!--~~~~~~~~~~~~~~~~~ DIVISION ~~~~~~~~~~~~~~~~~~~~-->
+		<fieldset> 
+        <legend>DIVISION</legend>
+          <div class="choice"><input name="division" value="HU" class="division checkbox" id="HU" onclick="toggleCheckbox('HU_label');" type="checkbox"><label id="HU_label" for="HU">Humanities</label></div>
+          <div class="choice"><input name="division" value="NS" class="division checkbox" id="NS" onclick="toggleCheckbox('NS_label');" type="checkbox"><label id="NS_label" for="NS">Natural Science and Math</label></div>
+          <div class="choice"><input name="division" value="SS" class="division checkbox" id="SS" onclick="toggleCheckbox('SS_label');" type="checkbox"><label id="SS_label" for="SS">Social Sciences</label></div>
+        </fieldset>
+        <input type="text" value="" name="division_submit" class="division" id="division_submit" hidden/>
+        
+        
+        <table style="margin-left:5%;padding:0px;width:92%;margin-top:0px;"> <!-- To align the two fields -->
+	        <tr style="padding:0px;height:150px;">
+		        
+		        
+		    <!--~~~~~~~~~~~~~~~~~ NUM COMMITTEES ~~~~~~~~~~~~~~~~~~~~-->
+		        <td style="width:35%;padding:0px;background-color:#ededed;margin:0px;border:1px solid #ededed;">
+        			<fieldset style="width:95%;margin-left:0px;">
+        			<legend>NUMBER OF COMMITTEES A MEMBER IS ON: </legend>
+          			<input name="num_coms" value="0" class="num_com checkbox" id="0" onclick="toggleCheckbox('0_label');" type="checkbox"><label id="0_label" for="0">0</label><br>
+          			<input name="num_coms" value="1" class="num_com checkbox" id="1" onclick="toggleCheckbox('1_label');" type="checkbox"><label id="1_label" for="1">1</label><br>
+          			<input name="num_coms" value="2" class="num_com checkbox" id="2" onclick="toggleCheckbox('2_label');" type="checkbox"><label id="2_label" for="2">2+</label>
+        			</fieldset>
+        		</td>
+        		<input type="text" value="" name="num_com_submit" id="num_com_submit" hidden/>
+        		
+        		
+        	<!--~~~~~~~~~~~~~~~~~ NUM POINTS ~~~~~~~~~~~~~~~~~~~~-->	
+        		<td style="width:35%;padding:0px;background-color:#ededed;border:1px solid #ededed;">    
+        			<fieldset style="width:95%;">
+        			<legend>NUMBER OF POINTS A MEMBER HAS: </legend>
+          			<input name="num_points" value="0" class="num_pt checkbox" id="0_pt" onclick="toggleCheckbox('0_pt_label');" type="checkbox"><label id="0_pt_label" for="0_pt">0</label><br>
+          			<input name="num_points" value="1" class="num_pt checkbox" id="1_pt" onclick="toggleCheckbox('1_pt_label');" type="checkbox"><label id="1_pt_label" for="1_pt">1</label><br>
+          			<input name="num_points" value="2" class="num_pt checkbox" id="2_pt" onclick="toggleCheckbox('2_pt_label');" type="checkbox"><label id="2_pt_label" for="2_pt">2</label><br>
+          			<input name="num_points" value="3" class="num_pt checkbox" id="3_pt" onclick="toggleCheckbox('3_pt_label');" type="checkbox"><label id="3_pt_label" for="3_pt">3+</label>
+        			</fieldset>
+        		</td>
+        		<input type="text" value="" name="num_pt_submit" id="num_pt_submit" hidden/>
+        	</tr>
+        	<tr>
+	        	
+	        <!--~~~~~~~~~~~~~~~~~ SABBATICAL INFO ~~~~~~~~~~~~~~~~~~~~-->
+	        	<td><p style="margin-top:0%;margin-left:6%;text-align:left;width:35%;">Include faculty with sabbatical/leave/retirement plans? <br><span style="white-space:nowrap;"><input name="plans" value="incl_plans" id="incl_plans" type="radio" checked="checked">Yes</span>
+          <span style="white-space:nowrap;"><input name="plans" value="no_plans" id="no_plans" type="radio">No</span></p></td>
+	          <td>
+		          
+		          <!--~~~~~~~~~~~~~~~~~ Search and Reset Buttons ~~~~~~~~~~~~~~~~~~~~-->
+		          <input name="subchange" id="search_btn" value="Search" onclick="formatQuery();" type="submit"/>
+		          <input type="button" id="clear_all" value="Reset" onclick="clearAll()"/>
+		          </td>
+	        </tr>
+        </table>
+       	<input type="text" name="leave_info" id="leave_info" value="" style="display:none;"/>
+        </form>
+        
+        
+        <!--~~~~~~~~~~~~~~~~~ Results displayed here ~~~~~~~~~~~~~~~~~~~~-->
+        <div style="float:right;width:58%;margin-right:1%;margin-top:1.5%;padding:0px;"> <!--to keep both tables in the same div-->
+	        
+	        <div id="table_header_div">
+	        <table id="table_header" style="width:100%;border-top-right-radius:10px;border-top-left-radius:10px;">
+		        <tr>
+			        <th onclick="sort_table(faculty, 0, asc0); asc0 *= -1;" style="width:30%;">Name<img id="0imgsort" class="arrow" src="-1.png"></th>
+		        	<th onclick="sort_table(faculty, 1, asc1); asc1 *= -1;" style="width:15%;">Rank<img id="1imgsort" class="arrow" src="-1.png"></th>
+		        	<th onclick="sort_table(faculty, 2, asc2); asc2 *= -1;" style="width:10%;">Division<img id="2imgsort" class="arrow" src="-1.png" height="10px" width="10px"></th>
+		        	<th onclick="sort_table(faculty, 3, asc3); asc3 *= -1;" style="width:10%;">Points<img id="3imgsort" class="arrow" src="-1.png" height="10px" width="10px"></th>
+		        	<th onclick="sort_table(faculty, 4, asc4); asc4 *= -1;" style="width:35%;">Current Committees<img id="4imgsort" class="arrow" src="-1.png" height="10px" width="10px"></th>
+				</tr>
+			</table>
+		</div> <!--End "table_header_div"-->
+		
+		<div id="results">
+	        <table id="table_results" >
+			    <tbody id="result_table_body" >
+		       	{% for j in data %}
+		        	<tr>
+			        	<td style="width:30%;">{{j[0]}}</td>
+			        	<td style="width:15%;">{{j[1]}}</td>
+			        	<td style="width:10%;">{{j[2]}}</td>
+			        	<td style="width:10%;">{{j[3]}}</td>
+			        	<td style="width:35%;">
+				        {% for val in j[5] %}
+				        	- {{val}}<br>
+				        {% endfor %}
+			       		 </td>
+			    	</tr>
+		        {% endfor %}
+		        </tbody>
+		    </table>
+		</div> <!-- End results div -->
+	    </div> <!-- End div containing both tables -->
+    </div><br> <!-- End window_2 -->
+	    
+	    
+	    <!--~~~~~~~~~~~~~~~~~ Rechecks all of the boxes that were checked before search submission ~~~~~~~~~~~~~~~~~~~~-->    
+	    {% if jinja_rank %}
+	    	<script>
+		    	var ranks = "{{jinja_rank}}".split(",");
+		    	for (var i = 0; i < ranks.length; i++){
+			    	document.getElementById(ranks[i]).checked = true;
+			    	document.getElementById(ranks[i] + "_label").style.color = "#258e8e";	
+			    }
+	    	</script>
+	    {% endif %}
+	    
+	    {% if jinja_div %}
+	    	<script>
+		    	var ranks = "{{jinja_div}}".split(",");
+		    	for (var i = 0; i < ranks.length; i++){
+			    	document.getElementById(ranks[i]).checked = true;
+			    	document.getElementById(ranks[i] + "_label").style.color = "#258e8e";	
+			    }
+	    	</script>
+	    {% endif %}
+	    
+	    {% if jinja_no_com %}
+	    	<script>
+		    	var ranks = "{{jinja_no_com}}".split(",");
+		    	for (var i = 0; i < ranks.length; i++){
+			    	document.getElementById(ranks[i]).checked = true;
+			    	document.getElementById(ranks[i] + "_label").style.color = "#258e8e";	
+			    }
+	    	</script>
+	    {% endif %}
+	    
+	    {% if jinja_no_pt %}
+	    	<script>
+		    	var ranks = "{{jinja_no_pt}}".split(",");
+		    	for (var i = 0; i < ranks.length; i++){
+			    	document.getElementById(ranks[i] + "_pt").checked = true;
+			    	document.getElementById(ranks[i] + "_pt_label").style.color = "#258e8e";	
+			    }
+	    	</script>
+	    {% endif %}
+	    
+	    {% if jinja_leave %}
+	    	<script>
+		    	if ("{{jinja_leave}}" == "include plans"){
+			    	document.getElementById("incl_plans").checked = true;	
+			    }
+			    else{
+				    document.getElementById("no_plans").checked = true;	
+			    }
+	    	</script>
+	    {% endif %}
+            
+    </body>
+</html>
+

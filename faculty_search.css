@@ -1,0 +1,213 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	background: white;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+/********** Home in left corner ************/
+#home_icon{
+	width:25px;
+	height:20px; 
+	color:white; 
+	position:relative;
+	cursor:pointer;
+}
+#home{
+	position:fixed;
+	background-color:#4d4dff;
+	color:white;
+	opacity:0.8;	
+	padding:5px;
+	top:0px;
+	left:0px;
+	border-radius:2px;
+	cursor:pointer;
+}
+#home_text{
+	position:relative;
+	bottom:3px;
+	margin-right:5px;
+	cursor:pointer;	
+}
+
+
+/************ Faculty Search Header*********/
+#header {
+	color: black;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 40px;
+}
+
+
+/********* Retrieve information about a faculty member gray div **********/
+#main {
+	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #ededed;
+	border-radius: 5px;	
+	text-align:center;	
+	min-width:1200px;
+	transition:0.5s;		
+}
+
+/****** general search box under "Retrieve information about faculty..." ******/
+#FacultyFullName{
+	padding:5px;
+	border:1.5px solid #cccccc;
+	border-radius:4px; 	
+}
+#FacultyFullName:focus{
+	background-color:#e6f7ff;	
+}
+
+/******************* teal "Retrieve" button ***************/
+#retrieve_fac_info_btn{
+	background-color:#009999;
+	color:white;
+	padding:5px;
+	margin:10px;
+	font-size:13px;
+	border:1px solid gray;
+	border-radius:4px;	
+	cursor:pointer;
+}
+#retrieve_fac_info_btn:hover{
+	background-color:#008080;	
+}
+
+
+/************** Select from the search parameters gray div **************/
+#window_2{
+	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #ededed;
+	border-radius: 5px;	
+	min-width:1200px;	
+}
+
+/************* Input fields *************/
+fieldset{
+	border:2px solid #99ccff;
+	border-radius:4px;
+	width:90%;
+	margin:20px;
+	margin-left:5%;
+	text-align:left;
+	padding:20px;	
+	background-color:rgb(225, 225, 225);
+}
+legend{
+	color:#66b3ff;
+	align:center;
+}
+input[type=checkbox]{
+	width:15px;
+	height:15px;
+}
+
+/********* teal "Search" submit button ***********/
+#search_btn{
+	background-color:#009999;
+	color:white;
+	padding:5px;
+	width:100%;
+	font-size:16px;
+	border:1px solid gray;
+	transition:0.5s;
+	border-radius:4px;
+}
+#search_btn:hover{
+	box-shadow: 2px 2px 8px gray;
+	cursor:pointer;	
+}
+
+/************ Blue Reset button ****************/
+#clear_all{
+	background-color:#cce6ff;
+	color:black;
+	padding:5px;
+	width:100%;
+	font-size:16px;
+	border:1px solid gray;
+	transition:0.5s;
+	border-radius:4px;
+}
+#clear_all:hover{
+	box-shadow: 2px 2px 8px gray;
+	cursor:pointer;	
+}
+
+/* only for the checkbox inputs under Rank and Division. Places the choices side by side and 
+prevents the text from being split from the input checkbox*/
+.choice{
+	white-space:nowrap;
+	display:inline-block;
+	margin-right:5%;	
+}
+
+
+
+/*************** results div - contains only the body so it can be scrollable ******************/
+#results{
+	width:100%;	
+	padding:0px;
+	border-bottom-right-radius:10px;
+	border-bottom-left-radius:10px;
+	background-color:rgb(89, 89, 100);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	overflow:scroll;
+	height:500px;
+}
+#results::-webkit-scrollbar{
+	display:none;
+}
+#table_results{ /*contains the results of the query (but not the header)*/
+	background-color:rgb(210, 222, 235);
+	width:100%;	
+	padding:10px;
+	border-collapse:collapse;
+	text-align:center;
+	border:1px solid rgb(89, 89, 100);
+	border-spacing:0;
+}
+#table_results td{
+	padding:13px;
+	height:20px;
+	line-height:20px;	
+}
+#table_results tr:nth-child(odd){
+	background-color:#e6f2ff;	
+}
+#table_header{ /*the header of the table -- which is a completely separate table from the body. Did it so the body could be scrollable*/
+	padding:0px;
+	border-collapse:collapse;
+	background-color:rgb(89, 89, 100);
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;	
+}
+#table_header th{	
+	padding:13px;
+	color:white;
+	cursor:pointer;
+	height:20px;
+}
+#table_header_div{
+	border-top-right-radius:10px;
+	border-top-left-radius:10px;	
+}
+.arrow{
+	position:absolute;
+	width:13px;
+	height:11px;
+	margin-left:5px;  
+	cursor:pointer;
+	margin-top:5px; 
+}
+
+
